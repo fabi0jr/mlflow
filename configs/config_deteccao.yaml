@@ -1,0 +1,65 @@
+# ====================================================================
+# CONFIG MASTER TEMPLATE PARA PROJETOS DE DETECÇÃO (YOLO, etc.)
+# ====================================================================
+
+# --- CONFIGURAÇÃO GERAL DA RUN ---
+experiment_name: "Projetos de Detecção de Objetos"
+run_name: "yolov8n_experimento_1"
+trainer_type: "detection"
+
+# --- FONTES DE DADOS E ARTEFATOS DE ENTRADA ---
+data:
+  roboflow_api_key: "YPn2PFW06xNY8hY7Kc56"
+  roboflow_workspace: "joseph-nelson"
+  roboflow_project: "chess-pieces-new"
+  roboflow_version: 25
+  download_format: "yolov8"
+
+# --- PARÂMETROS ---
+params:
+  # Gerais
+  model_name: "yolov8n.pt" 
+  dataset_name: "chess_pieces" 
+  seed: 2024
+
+  # Treinamento
+  epochs: 1 
+  batch_size: 16 
+  optimizer: "AdamW" 
+  scheduler: "Cosine" 
+  early_stopping: 50
+  
+  # Taxa de Aprendizado
+  lr0: 0.01 
+  lrf: 0.01 
+  momentum: 0.937 
+  weight_decay: 0.0005 
+  dropout: 0.0 
+  
+  # Aquecimento (Warmup)
+  warmup_epochs: 3.0 
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.1
+
+  # Específicos de Visão Computacional
+  image_size: 640
+  single_cls: False
+
+# --- MÉTRICAS E ARTEFATOS DE SAÍDA ---
+metrics_to_log:
+  - train_loss
+  - val_loss
+  - Precision
+  - Recall
+  - F1-Score
+  - mAP_50
+  - mAP_50_95
+  # IoU
+  # mIoU
+
+output_artifacts_to_log:
+  Pesos do modelo: "weights/best.pt"
+  Logs de treino: "results.csv" 
+  Data.yaml: "data.yaml"
+  Confusion matrix: "confusion_matrix.png"
+  Curvas de aprendizado: "results.png"
