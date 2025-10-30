@@ -1,0 +1,35 @@
+# ====================================================================
+# TEMPLATE: CLASSIFICAÇÃO DE IMAGEM (YOLO-CLS)
+# ====================================================================
+
+experiment_name: "Classificacao_Fraturas_Osseas"
+run_name: "yolov8n-cls_experimento_1"
+trainer_type: "image_classification"
+
+# --- FONTES DE DADOS (MODO SERVIDOR) ---
+data:
+  dataset_run_id: "830e37f978ae467e9a1540f7d195e3df"
+  dataset_artifact_path: "Bone-Break-Classification-2.zip"
+  data_root_relative_path: "Bone-Break-Classification-2"
+
+# --- PARÂMETROS ---
+params:
+  model_name: "/home/ia/cache/ultralytics/yolov8n-cls.pt" 
+  dataset_name: "bone_fracture_v1" 
+  seed: 2024
+  epochs: 5
+  batch_size: 16 
+  image_size: 224 
+
+# --- MÉTRICAS E ARTEFATOS DE SAÍDA ---
+metrics_to_log:
+  - train_loss
+  - val_loss
+  - top1_accuracy
+  - top5_accuracy
+
+output_artifacts_to_log:
+  Pesos do modelo: "weights/best.pt"
+  Logs de treino: "results.csv" 
+  Matriz de Confusão: "confusion_matrix.png"
+  Curvas de aprendizado: "results.png"

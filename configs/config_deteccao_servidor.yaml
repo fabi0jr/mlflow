@@ -1,25 +1,24 @@
 # ====================================================================
-# CONFIG MASTER TEMPLATE PARA PROJETOS DE DETECÇÃO (YOLO, etc.)
+# TEMPLATE: DETECÇÃO (DATASET DO SERVIDOR MLFLOW)
 # ====================================================================
 
 # --- CONFIGURAÇÃO GERAL DA RUN ---
-experiment_name: "Projetos de Detecção de Objetos"
-run_name: "yolov8n_experimento_1"
+experiment_name: "Deteccao_RockPaperScissors"
+run_name: "teste_rps_servidor_v1"
 trainer_type: "detection"
 
-# --- FONTES DE DADOS E ARTEFATOS DE ENTRADA ---
+# --- FONTES DE DADOS  ---
 data:
-  roboflow_api_key: "YPn2PFW06xNY8hY7Kc56"
-  roboflow_workspace: "joseph-nelson"
-  roboflow_project: "chess-pieces-new"
-  roboflow_version: 25
-  download_format: "yolov8"
+  dataset_run_id: "c93320b8dd984e0a96a30caf91a800c3"
+  
+  dataset_artifact_path: "dataset.zip/rock-paper-scissors-14.zip"
+  
+  data_yaml_relative_path: "rock-paper-scissors-14/data.yaml"
 
 # --- PARÂMETROS ---
 params:
-  # Gerais
-  model_name: "yolov8n.pt" 
-  dataset_name: "chess_pieces" 
+  model_name: "/home/ia/cache/ultralytics/yolov8n.pt"
+  dataset_name: "rock_paper_scissors_server" 
   seed: 2024
 
   # Treinamento
